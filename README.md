@@ -10,15 +10,9 @@ It uses **Claude through Claude Code**, so it runs on your **Claude Pro subscrip
 
 | What | Location |
 |---|---|
-| The script (the one that runs) | `~/.local/bin/fixsubs` (full path: `/Users/mah/.local/bin/fixsubs`) |
-| Reference copy of the script | `~/Documents/CodeProjects/fixsubs/fixsubs.py` (identical content; `.py` added so editors highlight it) |
+| The script | `~/Documents/CodeProjects/fixsubs/fixsubs.py` |
+| The `fixsubs` command | `~/.local/bin/fixsubs`, a symlink to the script above |
 | This README | `~/Documents/CodeProjects/fixsubs/README.md` |
-
-**The reference copy is not the one that runs.** If you edit the script, edit `~/.local/bin/fixsubs`, then refresh the copy:
-```bash
-cp ~/.local/bin/fixsubs ~/Documents/CodeProjects/fixsubs/fixsubs.py
-```
-To check that the two are still identical: `cmp ~/.local/bin/fixsubs ~/Documents/CodeProjects/fixsubs/fixsubs.py` (no output means identical).
 | Claude Code (required) | `/opt/homebrew/bin/claude`, which must be logged in to your Pro account |
 | LM Studio CLI (optional) | `~/.lmstudio/bin/lms` |
 
@@ -182,7 +176,7 @@ mv "fixsubs/Movie.original.srt" "Movie.srt"
 
 ## Customising
 
-Everything is in `~/.local/bin/fixsubs`. Make changes there, then refresh the reference copy (see "Where things are"):
+Everything is in `fixsubs.py`. Changes take effect immediately, since the `fixsubs` command links to it:
 - **`NOTE_START` / `NOTE_END`** list the junk tokens treated as misread music notes at the start or end of a line.
 - **`_BRACKET_NOTE_RE`** sets which characters count as junk inside a bracketed note (`[F5J]`). Add any new misread character there.
 - **`SYSTEM_PROMPT`** (near the top) holds the instructions the AI follows. If it keeps missing a particular OCR error, or keeps changing something it shouldn't, add an example to the "Fix things like" or "Do NOT" lists.
